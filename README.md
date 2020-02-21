@@ -1,1 +1,1 @@
-一个论坛，当前仅仅完成了github登录功能
+A forum that currently only completes the github login function
