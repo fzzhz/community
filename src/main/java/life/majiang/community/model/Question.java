@@ -6,7 +6,7 @@ public class Question {
     private String description;
     private Long gmt_create;
     private Long gmt_modified;
-    private Integer creator;
+    private Long creator;
     private Integer comment_count;
     private Integer view_count;
     private Integer like_count;
@@ -52,11 +52,11 @@ public class Question {
         this.gmt_modified = gmt_modified;
     }
 
-    public Integer getCreator() {
+    public Long getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
+    public void setCreator(Long creator) {
         this.creator = creator;
     }
 
