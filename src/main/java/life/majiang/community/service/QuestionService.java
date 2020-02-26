@@ -43,7 +43,7 @@ public class QuestionService {
         for (Question question : questions) {
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
-            User user = userMapper.findById(question.getCreator());
+            User user = userMapper.findByAccountId(question.getCreator());
             questionDTO.setUser(user);
             questionDTOS.add(questionDTO);
         }
@@ -76,7 +76,7 @@ public class QuestionService {
         for (Question question : questions) {
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
-            User user = userMapper.findById(question.getCreator());
+            User user = userMapper.findByAccountId(question.getCreator());
             questionDTO.setUser(user);
             questionDTOS.add(questionDTO);
         }
@@ -84,5 +84,25 @@ public class QuestionService {
 
         paginationDTO.setPagination(totalPage,page,size);
         return paginationDTO;
+    }
+
+    public QuestionDTO getQuestionDTOByQuestionId(Integer questionId) {
+        Question question = questionMapper.getQuestionByQuestionId(questionId);
+        if (question == null){
+            return null;
+        }
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question,questionDTO);
+        User user = userMapper.findByAccountId(question.getCreator());
+        questionDTO.setUser(user);
+        return  questionDTO;
+    }
+
+    public void createOrUpdate(Question question) {
+        if (question.getId() == null){
+            questionMapper.create(question);
+        }else {
+            questionMapper.update(question);
+        }
     }
 }
